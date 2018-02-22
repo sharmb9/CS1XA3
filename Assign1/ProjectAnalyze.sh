@@ -12,3 +12,6 @@ git diff > changes.log
 
 grep -r --exclude="todo.log" "#TODO" * > todo.log
 
+#Checks all haskell files for syntax errors and puts the result into error.log
+find . -name "*.hs" -exec ghc -fno-code {} \; > error.log
+
