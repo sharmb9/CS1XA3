@@ -1,6 +1,9 @@
 #!/bin/bash
 
-#returing to home directory
-cd .. 
+#Checking the status of the repo
+git status
+
+#Puts all uncommited changes in a file changes.log
+git diff > changes.log
 
 
