@@ -1,24 +1,36 @@
 #!/bin/bash
 
 #Checking if local repo is up to date with remote repo
-
+function checkStatus()
+{
 #updates your local repo on the machine
 git fetch
 #Checks if local repo is up to date with remote
-git status
+echo $(git status)
+}
 
 #Puts all uncommited changes in a file changes.log
-
-git diff >> changes.log
+function changes()
+{
+git diff > changes.log
+}
 
 #Puts each line from every file of your project with tag #TODO into a file todo.log
-
-grep -r --exclude={todo.log,ProjectAnalyze.sh,changes.log,error.log} "#TODO" * >> todo.log
+function todo()
+{
+grep -r --exclude={todo.log,ProjectAnalyze.sh,changes.log,error.log} "#TODO" * > todo.log
+}
 
 #Checks all haskell files for syntax errors and puts the result into error.log
-find . -name "*.hs" -exec ghc -fno-code {} \; >> error.log
+function error()
+{
+find . -name "*.hs" -exec ghc -fno-code {} \; > error.log
+}
+
 
 #Ask user if they want to view any log file
+function displayLogs()
+{
 echo "Your changes, haskell errors and TODO tags have been logged into log files, do you wish to view them?(Y/N)"
 read input
 if [ $input == "Y" ]; then
@@ -47,8 +59,11 @@ if [ $input == "Y" ]; then
 elif [ $input == "N" ]; then
 echo "Oh alright"
 fi
+}
 
 #Shows user a three day weather report visual (refer to https://github.com/chubin/wttr.in for more details)
+function weather()
+{
 echo "Hey would you like to check the weather before you step out?(Y/N)"
 read weather
 if [ $weather == "Y" ] ; then
@@ -56,4 +71,13 @@ if [ $weather == "Y" ] ; then
 elif [ $weather == "N" ] ; then
 	echo "Oki doki, have a great day"
 fi
+}
+
+#Calling the functions 
+checkStatus
+changes
+error
+todo
+displayLogs
+weather
 
