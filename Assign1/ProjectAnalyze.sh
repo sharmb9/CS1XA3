@@ -19,30 +19,41 @@ grep -r --exclude={todo.log,ProjectAnalyze.sh,changes.log,error.log} "#TODO" * >
 find . -name "*.hs" -exec ghc -fno-code {} \; >> error.log
 
 #Ask user if they want to view any log file
-echo "Your changes, haskell errors and TODO tags have been logged into log files, do you wish to view them?"
+echo "Your changes, haskell errors and TODO tags have been logged into log files, do you wish to view them?(Y/N)"
 read input
 if [ $input == "Y" ]; then
 	echo "Type C if you wish to view changes.log, type E if you wish to view errors.log and type T to view TODO.log. Type A if you wish to view your log files at once"
 	read type
 	if [ $type == "C" ]; then
+		echo "*****Processing changes.log*****"
 		cat changes.log
 	elif [ $type == "E" ]; then
-		cat errors.log
+		echo "*****Processing error.log*****"
+		cat error.log
 	elif [ $type == "T" ]; then
+		echo "*****Processing todo.log*****"
 		cat todo.log
 	elif [ $type == "A" ]; then
 		echo "Processing changes.log..."
 		cat changes.log
+		echo "**********"
 		echo "Processing todo.log..."
 		cat todo.log
+		echo "**********"
 		echo "Processing errors.log..."
-		cat errors.log
-	else
-		echo "Oops seems like you enterd the wrong key"
-		#something like break
+		cat error.log
+		echo "**********"
 	fi
 elif [ $input == "N" ]; then
-echo "Have a nice day"
-#enter else statemnt for wronf key
+echo "Oh alright"
+fi
+
+#Shows user a three day weather report visual (refer to https://github.com/chubin/wttr.in for more details)
+echo "Hey would you like to check the weather before you step out?(Y/N)"
+read weather
+if [ $weather == "Y" ] ; then
+	curl wttr.in
+elif [ $weather == "N" ] ; then
+	echo "Oki doki, have a great day"
 fi
 
