@@ -1,4 +1,5 @@
 --This is a simpler timer
+module TimerApp exposing (..)
 
 import Html exposing (Html, button, div, text, p)
 import Html.Events exposing (onClick)
