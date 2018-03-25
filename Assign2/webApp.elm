@@ -1,5 +1,4 @@
---This is a simpler version of a pomodoro app(The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, but we will be using 25 seconds here)
-module Timer exposing (..)
+--This is a simpler timer
 
 import Html exposing (Html, button, div, text, p)
 import Html.Events exposing (onClick)
