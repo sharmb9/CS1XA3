@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Html.Attributes exposing (style)
 import Svg exposing (Svg, svg)
 import Time exposing (Time, second)
+import String exposing (padLeft)
 
 --main--
 
@@ -57,6 +58,7 @@ type Msg
     | Pause
     | DecTime Time
 
+
 --Updates
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -90,21 +92,21 @@ update msg model =
 
 
 row : Html.Attribute Msg
-row = style [("display", "inline-block"), ("width", "25px")]
+row = style [("display", "inline-block"), ("padding", "20px")]
 
 info : Html.Attribute Msg
-info = style [("width", "300px")]
+info = style [("width", "500px"), ("text-align", "center")]
 
 view : Model -> Html Msg
 view model =
-  div [ style[("font-family", "Courier"), ("margin", "10px"), ("background", "yellow") ] ]
+  div [ style[("font-family", "Courier"), ("margin", "10px"), ("background", "yellow"), ("height", "80%")] ]
     [ div [ row ] [ button [ onClick Decrease ] [ text "-" ] ]
-    , div [ row , style [("text-align", "center")] ] [ text (toString model.timer) ]
+    , div [ row , style [("text-align", "center"), ("font-size", "30px")] ] [ text (toString (model.timer//60) ++ ":" ++ toString (model.timer%60)) ]
     , div [ row ] [ button [ onClick Increase ] [ text "+" ] ]
     , div [ info , style [("text-align", "center")] ] [ text (toString model.status) ]
-    , div [ info ] [ button [ onClick Start ] [ text "start" ] ]
-    , div [ info ] [ button [ onClick Pause ] [ text "pause" ] ]
-    , div [ info ] [ button [ onClick Reset ] [ text "reset" ] ]
+    , div [ row ] [ button [ onClick Start ] [ text "start" ] ]
+    , div [ row ] [ button [ onClick Pause ] [ text "pause" ] ]
+    , div [ row ] [ button [ onClick Reset ] [ text "reset" ] ]
     , div [ info ] [ p [] [ text "This is a simple timer, Increase the timer first and then click start" ] ]
     ]
 

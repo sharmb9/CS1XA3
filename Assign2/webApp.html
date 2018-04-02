@@ -8729,8 +8729,12 @@ var _elm_lang$svg$Svg$view = _elm_lang$svg$Svg$node('view');
 var _user$project$TimerApp$info = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'width', _1: '300px'},
-		_1: {ctor: '[]'}
+		_0: {ctor: '_Tuple2', _0: 'width', _1: '500px'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
+			_1: {ctor: '[]'}
+		}
 	});
 var _user$project$TimerApp$row = _elm_lang$html$Html_Attributes$style(
 	{
@@ -8738,7 +8742,7 @@ var _user$project$TimerApp$row = _elm_lang$html$Html_Attributes$style(
 		_0: {ctor: '_Tuple2', _0: 'display', _1: 'inline-block'},
 		_1: {
 			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 'width', _1: '25px'},
+			_0: {ctor: '_Tuple2', _0: 'padding', _1: '20px'},
 			_1: {ctor: '[]'}
 		}
 	});
@@ -8851,7 +8855,11 @@ var _user$project$TimerApp$view = function (model) {
 						_1: {
 							ctor: '::',
 							_0: {ctor: '_Tuple2', _0: 'background', _1: 'yellow'},
-							_1: {ctor: '[]'}
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'height', _1: '80%'},
+								_1: {ctor: '[]'}
+							}
 						}
 					}
 				}),
@@ -8895,7 +8903,11 @@ var _user$project$TimerApp$view = function (model) {
 								{
 									ctor: '::',
 									_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'font-size', _1: '30px'},
+										_1: {ctor: '[]'}
+									}
 								}),
 							_1: {ctor: '[]'}
 						}
@@ -8903,7 +8915,14 @@ var _user$project$TimerApp$view = function (model) {
 					{
 						ctor: '::',
 						_0: _elm_lang$html$Html$text(
-							_elm_lang$core$Basics$toString(model.timer)),
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Basics$toString((model.timer / 60) | 0),
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									':',
+									_elm_lang$core$Basics$toString(
+										A2(_elm_lang$core$Basics_ops['%'], model.timer, 60))))),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -8961,7 +8980,7 @@ var _user$project$TimerApp$view = function (model) {
 								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _user$project$TimerApp$info,
+									_0: _user$project$TimerApp$row,
 									_1: {ctor: '[]'}
 								},
 								{
@@ -8986,7 +9005,7 @@ var _user$project$TimerApp$view = function (model) {
 									_elm_lang$html$Html$div,
 									{
 										ctor: '::',
-										_0: _user$project$TimerApp$info,
+										_0: _user$project$TimerApp$row,
 										_1: {ctor: '[]'}
 									},
 									{
@@ -9011,7 +9030,7 @@ var _user$project$TimerApp$view = function (model) {
 										_elm_lang$html$Html$div,
 										{
 											ctor: '::',
-											_0: _user$project$TimerApp$info,
+											_0: _user$project$TimerApp$row,
 											_1: {ctor: '[]'}
 										},
 										{
