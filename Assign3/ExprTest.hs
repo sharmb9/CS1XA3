@@ -1,22 +1,46 @@
-module ExprTest where
+{--|
+Module : ExprTest
+Description: Test cases for the haskell library
+Copyright: (c) Bilaval Sharma @2018
+License : WTFPL 
+Stability : experimental
+Portability : POSIX
+-}
+
+module ExprTest(evalCase1, evalCase2, evalCase3, simplifyCase1, simplifyCase2, diffCase) where
 
 import           ExprDiff
 import           ExprParser
-import           ExprPretty
 import           ExprType
 
 import qualified Data.Map.Strict as Map
 import           Test.QuickCheck
 
-sampleExpr1 :: Expr Int
-sampleExpr1 = (var "x") !+ (var "y") --x _+ y
+-- |Test case for addition
+evalCase1 :: Double -> Double -> Bool
+evalCase1 a b = eval (Map.fromList [("x",a),("y",b)]) (Add (Var "x") (Var "y")) == a+b
+testevalCase1 = quickCheck evalCase1
 
+-- |Test case for multiplication
+evalCase2 :: Double -> Double -> Bool
+evalCase2 a b = eval (Map.fromList [("x",a),("y",b)]) (Mult (Var "x") (Var "y")) == a*b
+testevalCase2 = quickCheck evalCase2
 
-listToExpr1 :: [Double] -> Expr Double
-listToExpr1 [x]    = Const x
-listToExpr1 (x:xs) = Add (Const x) (listToExpr1 xs)
-listToExpr1 []     = error "Not list to expression for empty"
+-- |Test case for Exponent
+evalCase3 :: Double -> Double -> Bool
+evalCase3 a b = eval (Map.fromList [("x",a),("y",b)]) (Exp (Var "x") (Var "y")) == a**b
+testevalCase3 = quickCheck evalCase2
 
+-- |Test case to check simplification of multiplication of a variable with constant
+simplifyCase1 :: Double -> Double -> Bool
+simplifyCase1 a b  = simplify (Map.fromList [("x",a),("y",b)]) (Mult (Const 1) (Var "x")) == Const a
+testsimplifyCase1 = quickCheck simplifyCase1
 
-test1 :: Int -> Bool
-test1 x = eval (Map.fromList [("x",x),("y",-x)]) sampleExpr1 == 0
+-- |Test case to check exponent
+simplifyCase2 :: Double -> Double -> Bool
+simplifyCase2 a b= simplify (Map.fromList [("x",a),("y",b)]) (Exp (Const 4) (Const 0)) == Const 1
+
+-- |Test case to check partial differentiation of a constant
+diffCase :: String -> Double -> Bool
+diffCase s a = partDiff s (Const a) == Const 0
+testdiffCase = quickCheck diffCase
