@@ -13,4 +13,4 @@ differentiable expressions
 - Testing Idea: Slack and https://github.com/barskyn/CS1XA3/tree/master/Assign3/assign3
 
 ## Documentation: 
-It's inside the docs folder, I am trying to set up the github pages but my wifi is really shitty rn
+Here's the link to documentation: https://sharmb9.github.io/
