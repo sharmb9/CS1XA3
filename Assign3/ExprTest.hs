@@ -1,8 +1,9 @@
-{--|
+{-|
 Module : ExprTest
-Description: Test cases for the haskell library
-Copyright: (c) Bilaval Sharma @2018
-License : WTFPL 
+Description : Contains test cases for the library
+Copyright : (c) Bilaval Sharma
+License : WTFPL
+Maintainer : sharmb9@mcmaster.ca
 Stability : experimental
 Portability : POSIX
 -}
